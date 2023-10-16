@@ -1,0 +1,93 @@
+
+# Afficher les images
+
+docker images
+
+
+# Afficher les container plus detailer
+
+docker container ls
+
+# Afficher toutes les containers 
+
+docker ps -a
+
+# Demarer un container
+
+docker run -d nom_image:tag_image
+ex : docker run -d nginix:latest 
+     NB : -d : permet de faire d'execute d'autre commde en meme temps container
+               tourne, sans -d se terminal sera bloque temp ke le container est lancer 
+
+#  Changer le port d'un container 
+
+docker run -d -p notre_port:port_fornis_par_container nom_image:tag_image
+ex: docker run -d -p 3000:80 nginix:latest // le server nginix sera lancer sur le ports 3000 
+                                                      
+
+# Lancer le container sur plusieur port 
+
+  docker run -d -p 3000:80 -p 8080:80 nginix:latest // le server nginix sera lancer sur les
+                                                      ports 3000 et le port 8080
+
+# Arreter un container
+
+1- docker ps ( pour avoir touts les container et leur id ou nom )
+2- docker stop id_container ou nom_container
+
+# Supprimer un container 
+
+1-docker ps -a ( avoir touts active ou pas )
+2-docker rm id_container //supprime le container
+
+# Supprimer plusieur container 
+
+1-docker ps -aq ( avoir tout les id des contianer )
+2-docker rm $( docker ps -aq ) // supprime tout
+
+# Changer le nom d'une image 
+
+docker run --name taper_new_name -d -p 3000:80 -p 8080:80 nginix:latest
+ex: docker run --name website -d -p 3000:80 -p 8080:80 nginix:latest // le nom est changer en website
+    -> docker ps ( pour verifier )
+
+# Formater l'affichage
+
+docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
+
+// cela permet d'avoir un affichage bien formater
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

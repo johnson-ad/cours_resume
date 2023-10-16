@@ -51,11 +51,15 @@ docker run --name taper_new_name -d -p 3000:80 -p 8080:80 nginix:latest
 ex: docker run --name website -d -p 3000:80 -p 8080:80 nginix:latest // le nom est changer en website
     -> docker ps ( pour verifier )
 
-# Formater l'affichage
+# Formater l'affichage (cela permet d'avoir un affichage bien formater)
 
 docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
 
-// cela permet d'avoir un affichage bien formater
+-> Creer une variable pour stocker le format
+      export FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
+
+-> Utilisation du variable
+      ex: docker ps --format=$FORMAT
 
 
 

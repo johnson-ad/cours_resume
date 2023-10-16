@@ -103,6 +103,15 @@ dans 1 projet, par exemple ns c'est la creation de site, dans le doc website on 
     ajout tout le contenu de notre doc website dans le container nginx.
     En gros il fait comme l'etape de volume
 
+# Creer une image a partir de Dockerfile
+
+docker build --help // pour avoir toutes les commandes
+
+1-docker build --tag name_image:tag_image
+  ex: docker build --tag website:latest . (le . indique l'emplacement) //va cree une image volume
+      
+      docker images ls // on vera notre img website
+      docker run --name website -d -p 3000:80 nginx:latest
 
 
 

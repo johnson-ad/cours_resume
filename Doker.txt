@@ -80,9 +80,13 @@ ex: docker run --name website -v $(dir[si pc est windows]) $(pwd[si macOS ou lin
 5-root@fa2cf5ob07b:/# exit  // pour quitter du repertoire
 
 
+# Partage des volumes entre 2 ou plusieur container
 
+1-docker run --help //pour avoir toutes les commande docker
+  --volumes-from nom_container(a partage)
 
-
+2- docker run --name website -d -p 8080:80 nginix:latest //container A
+   docker run --name website_copy --volumes-from website -d -p 8081:80 nginix:latest //container B contient tout ce i est dans A
 
 
 

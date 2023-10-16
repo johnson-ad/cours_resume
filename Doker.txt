@@ -61,8 +61,23 @@ docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.
 -> Utilisation du variable
       ex: docker ps --format=$FORMAT
 
+# Volume (garde en memoire notre passage)
 
+docker run --name website -v $(chemain_absolut_fichier):chemain_fournie_par_container_surLeur_site -d -p 3000:80 -p 8080:80 nginix:latest
+ex: docker run --name website -v $(dir[si pc est windows]) $(pwd[si macOS ou linux]) -d -p 3000:80 -p 8080:80 nginix:latest
+    
+     docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 3000:80 -p 8080:80 nginix:latest
 
+1- Rentrer(comme on rentre dans un repertoire) dans un container
+ docker exec -it website bash
+
+2- root@fa2cf5ob07b:/# ls -al    // affiche tout le contenu du repertoire
+
+3-root@fa2cf5ob07b:/# cd /usr/share/nginx/html //aller dans le repertoire fournie sur le site website
+
+4-root@fa2cf5ob07b:/# ls -al //on vera notre fichier ki etait sur notre machine dans ce repertoire
+
+5-root@fa2cf5ob07b:/# exit  // pour quitter du repertoire
 
 
 

@@ -15,19 +15,19 @@ docker ps -a
 # Demarer un container
 
 docker run -d nom_image:tag_image
-ex : docker run -d nginix:latest 
+ex : docker run -d nginx:latest 
      NB : -d : permet de faire d'execute d'autre commde en meme temps container
                tourne, sans -d se terminal sera bloque temp ke le container est lancer 
 
 #  Changer le port d'un container 
 
 docker run -d -p notre_port:port_fornis_par_container nom_image:tag_image
-ex: docker run -d -p 3000:80 nginix:latest // le server nginix sera lancer sur le ports 3000 
+ex: docker run -d -p 3000:80 nginx:latest // le server nginx sera lancer sur le ports 3000 
                                                       
 
 # Lancer le container sur plusieur port 
 
-  docker run -d -p 3000:80 -p 8080:80 nginix:latest // le server nginix sera lancer sur les
+  docker run -d -p 3000:80 -p 8080:80 nginx:latest // le server nginx sera lancer sur les
                                                       ports 3000 et le port 8080
 
 # Arreter un container
@@ -47,8 +47,8 @@ ex: docker run -d -p 3000:80 nginix:latest // le server nginix sera lancer sur l
 
 # Changer le nom d'une image 
 
-docker run --name taper_new_name -d -p 3000:80 -p 8080:80 nginix:latest
-ex: docker run --name website -d -p 3000:80 -p 8080:80 nginix:latest // le nom est changer en website
+docker run --name taper_new_name -d -p 3000:80 -p 8080:80 nginx:latest
+ex: docker run --name website -d -p 3000:80 -p 8080:80 nginx:latest // le nom est changer en website
     -> docker ps ( pour verifier )
 
 # Formater l'affichage (cela permet d'avoir un affichage bien formater)
@@ -63,10 +63,10 @@ docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.
 
 # Volume (garde en memoire notre passage)
 
-docker run --name website -v $(chemain_absolut_fichier):chemain_fournie_par_container_surLeur_site -d -p 3000:80 -p 8080:80 nginix:latest
-ex: docker run --name website -v $(dir[si pc est windows]) $(pwd[si macOS ou linux]) -d -p 3000:80 -p 8080:80 nginix:latest
+docker run --name website -v $(chemain_absolut_fichier):chemain_fournie_par_container_surLeur_site -d -p 3000:80 -p 8080:80 nginx:latest
+ex: docker run --name website -v $(pwd[si macOS ou linux]) -d -p 3000:80 -p 8080:80 nginix:latest
     
-     docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 3000:80 -p 8080:80 nginix:latest
+     docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 3000:80 -p 8080:80 nginx:latest
 
 1- Rentrer(comme on rentre dans un repertoire) dans un container
  docker exec -it website bash
@@ -85,11 +85,23 @@ ex: docker run --name website -v $(dir[si pc est windows]) $(pwd[si macOS ou lin
 1-docker run --help //pour avoir toutes les commande docker
   --volumes-from nom_container(a partage)
 
-2- docker run --name website -d -p 8080:80 nginix:latest //container A
+2- docker run --name website -d -p 8080:80 nginx:latest //container A
    docker run --name website_copy --volumes-from website -d -p 8081:80 nginix:latest //container B contient tout ce i est dans A
 
 
+# Dockerfile (c'est comme package.json)
 
+dans 1 projet, par exemple ns c'est la creation de site, dans le doc website on creee le fichier Dockerfile
+(lire la doc Dockerfile)
+//Dockerfile permet de cree des images a partir des data ki se trouve dans le Dockerfile
+
+1-Creer le fichier Dockerfile
+2-Dans le fichier ecrire:
+   FROM nginx:latest 
+   ADD . /usr/share/nginx/html (le . veux dire tout le contenu)
+   //on va lancer le build du Dockerfile, il va cree un volume avec l'image nginx et
+    ajout tout le contenu de notre doc website dans le container nginx.
+    En gros il fait comme l'etape de volume
 
 
 

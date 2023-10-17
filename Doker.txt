@@ -113,7 +113,14 @@ docker build --help // pour avoir toutes les commandes
       docker images ls // on vera notre img website
       docker run --name website -d -p 3000:80 nginx:latest
 
+## Exemple de configuration de Dockerfile(avec node js)
 
+FROM node:10.16.1-alpine
+WORKDIR /app   ->// verifi si doc app exist tu fais sinon tu le cree
+ADD package*.json  //empeche la reinstalations de tout les package a chaque on build(va juste ajouter les modifications faites) 
+RUN npm install
+ADD . .    ->//ajout toutes le contenu du doc website dans le doc app
+CMD node index.js //une foiis le build fini lance node index.js
 
 
 

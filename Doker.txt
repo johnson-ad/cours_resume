@@ -30,6 +30,12 @@ ex: docker run -d -p 3000:80 nginx:latest // le server nginx sera lancer sur le 
   docker run -d -p 3000:80 -p 8080:80 nginx:latest // le server nginx sera lancer sur les
                                                       ports 3000 et le port 8080
 
+# Prendre la main dans un container
+
+docker run -ti(permet de prendre la main dans le container une fois cleui -ci est demarer)
+ex: docker run -ti --name c1 -d debian:latest //une fois demarer on peut lutiliser comme si on utilisait debian 
+                                                faire des apt update ou apt install git par exemple
+
 # Arreter un container
 
 1- docker ps ( pour avoir touts les container et leur id ou nom )
